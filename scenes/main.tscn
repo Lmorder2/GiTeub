@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=15 format=3 uid="uid://dxvvlck8lej3f"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_elriq"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="3_w27de"]
 [ext_resource type="PackedScene" uid="uid://dpm3l05d7fu35" path="res://objects/platform.tscn" id="5_3s40e"]
 [ext_resource type="PackedScene" uid="uid://r7rt7pth4u7o" path="res://objects/wall_low.tscn" id="5_6vel1"]
+[ext_resource type="Script" uid="uid://q6kfha035fcx" path="res://scenes/score.gd" id="6_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://c71evdjblk5wp" path="res://objects/wall_high.tscn" id="7_cabne"]
 [ext_resource type="PackedScene" uid="uid://bvx5cvigosg0s" path="res://objects/platform_large_grass.tscn" id="7_wggef"]
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="8_7ty2f"]
@@ -35,6 +36,7 @@ shadow_enabled = true
 shadow_opacity = 0.75
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_eb6dy")
@@ -63,33 +65,49 @@ scale = Vector2(0.35, 0.35)
 pivot_offset = Vector2(64, 64)
 
 [node name="Health" type="Label" parent="HUD"]
-offset_left = 48.0
-offset_top = 627.0
-offset_right = 138.0
-offset_bottom = 672.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 187.0
+offset_bottom = 75.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
-text = "100%"
+text = "HP : 100%"
 label_settings = SubResource("LabelSettings_fpmwk")
 vertical_alignment = 2
 
+[node name="Score" type="Label" parent="HUD"]
+offset_left = 30.0
+offset_top = 80.0
+offset_right = 187.0
+offset_bottom = 125.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Score : 0"
+label_settings = SubResource("LabelSettings_fpmwk")
+vertical_alignment = 2
+script = ExtResource("6_eb6dy")
+
 [node name="Enemies" type="Node" parent="."]
 
-[node name="enemy-flying" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
+[node name="enemy-flying" parent="Enemies" node_paths=PackedStringArray("player", "score") instance=ExtResource("8_7ty2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.5, -6)
 player = NodePath("../../Player")
+score = NodePath("../../HUD/Score")
 
-[node name="enemy-flying2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
+[node name="enemy-flying2" parent="Enemies" node_paths=PackedStringArray("player", "score") instance=ExtResource("8_7ty2f")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.5, 2.5, 1.5)
 player = NodePath("../../Player")
+score = NodePath("../../HUD/Score")
 
-[node name="enemy-flying3" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
+[node name="enemy-flying3" parent="Enemies" node_paths=PackedStringArray("player", "score") instance=ExtResource("8_7ty2f")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 5.5, 3.5, 9)
 player = NodePath("../../Player")
+score = NodePath("../../HUD/Score")
 
-[node name="enemy-flying4" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
+[node name="enemy-flying4" parent="Enemies" node_paths=PackedStringArray("player", "score") instance=ExtResource("8_7ty2f")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 15.5, 4, -7.5)
 player = NodePath("../../Player")
+score = NodePath("../../HUD/Score")
 
 [node name="Level" type="Node" parent="."]
 

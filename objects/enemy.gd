@@ -1,10 +1,14 @@
 extends Node3D
 
-@export var player: Node3D
 
+@export var player: Node3D
 @onready var raycast = $RayCast
 @onready var muzzle_a = $MuzzleA
 @onready var muzzle_b = $MuzzleB
+@export var score: Label
+
+
+
 
 var health := 100
 var time := 0.0
@@ -34,14 +38,20 @@ func damage(amount):
 
 	if health <= 0 and !destroyed:
 		destroy()
+		
+		
 
 # Destroy the enemy when out of health
-
+		
 func destroy():
 	Audio.play("sounds/enemy_destroy.ogg")
 
 	destroyed = true
+	score.scoreAdd()
 	queue_free()
+	
+	
+	
 
 # Shoot when timer hits 0
 
