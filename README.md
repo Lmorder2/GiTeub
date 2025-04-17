@@ -1,6 +1,10 @@
 <p align="center"><img src="icon.png"/></p>
 
+<<<<<<< HEAD
 # Arthur rends l'argent
+=======
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+>>>>>>> a4e0df7fdfd385a805ee1a5270aa1c77e378c7e3
 
 This package includes a basic template for a first person shooter in Godot 4.3 (stable). Includes features like;
 
