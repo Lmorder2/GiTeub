@@ -149,7 +149,7 @@ func handle_controls(_delta):
 	if Input.is_action_just_pressed("jump"):
 		
 		if jump_single or jump_double:
-			$Audio.play("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg")
+			Audio.play("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg")
 		
 		if jump_double:
 			
@@ -245,7 +245,7 @@ func action_weapon_toggle():
 		weapon_index = wrap(weapon_index + 1, 0, weapons.size())
 		initiate_change_weapon(weapon_index)
 		
-		$Audio.play("sounds/weapon_change.ogg")
+		Audio.play("sounds/weapon_change.ogg")
 
 # Initiates the weapon changing animation (tween)
 

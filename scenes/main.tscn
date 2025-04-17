@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=14 format=3 uid="uid://dxvvlck8lej3f"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_elriq"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="8_7ty2f"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="10_5ksau"]
 [ext_resource type="Shader" uid="uid://cqivoyakdikin" path="res://shaders/main.gdshader" id="11_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://ccoqx3fg4d2qo" path="res://soundmanager.tscn" id="12_eb6dy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
 shader = ExtResource("11_ya4ey")
@@ -167,7 +166,5 @@ transform = Transform3D(1.73205, 0, 1, 0, 2, 0, -1, 0, 1.73205, -30.1261, 2.4268
 
 [node name="cube4" parent="Decoration" instance=ExtResource("10_5ksau")]
 transform = Transform3D(1.12202, 1.39419, -2.40776, 1.53922, 1.85165, 1.78946, 2.31773, -1.90463, -0.0227883, -0.881504, 13.0297, -30.1859)
-
-[node name="SoundManager" parent="." instance=ExtResource("12_eb6dy")]
 
 [connection signal="health_updated" from="Player" to="HUD" method="_on_health_updated"]
