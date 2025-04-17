@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=20 format=3 uid="uid://dxvvlck8lej3f"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_elriq"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="8_7ty2f"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="10_5ksau"]
 [ext_resource type="Shader" uid="uid://cqivoyakdikin" path="res://shaders/main.gdshader" id="11_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://ddcdqj46ciifu" path="res://stephen.jpeg" id="12_eb6dy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
 shader = ExtResource("11_ya4ey")
@@ -20,6 +21,38 @@ font = ExtResource("3_w27de")
 font_size = 36
 outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trceg"]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("12_eb6dy")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_a8y0u"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, -200), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jkv2x"]
+curve = SubResource("Curve_a8y0u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jbj1t"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 2, -1)
+spread = 36.595
+initial_velocity_min = 15.38
+initial_velocity_max = 15.38
+radial_accel_curve = SubResource("CurveTexture_jkv2x")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_eb6dy"]
 
 [node name="Main" type="Node3D"]
 
@@ -166,5 +199,14 @@ transform = Transform3D(1.73205, 0, 1, 0, 2, 0, -1, 0, 1.73205, -30.1261, 2.4268
 
 [node name="cube4" parent="Decoration" instance=ExtResource("10_5ksau")]
 transform = Transform3D(1.12202, 1.39419, -2.40776, 1.53922, 1.85165, 1.78946, 2.31773, -1.90463, -0.0227883, -0.881504, 13.0297, -30.1859)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.05831, 7.73787, 20.3835)
+material_override = SubResource("StandardMaterial3D_trceg")
+amount = 38
+lifetime = 2.06
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_jbj1t")
+draw_pass_1 = SubResource("QuadMesh_eb6dy")
 
 [connection signal="health_updated" from="Player" to="HUD" method="_on_health_updated"]
